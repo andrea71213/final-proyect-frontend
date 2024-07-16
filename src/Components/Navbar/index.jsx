@@ -104,14 +104,13 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex justify-between items-center fixed gap-2 z-10 w-full py-6 px-8 text-sm font-light top-0 bg-white border-b border-gray-200 dark:bg-gray-900">
+    <nav className="flex justify-between items-center fixed gap-2 z-10 w-full py-4 px-8 text-sm font-light top-0 bg-white border-b border-gray-200 dark:bg-gray-900">
       
       {/* Left */}
       <div className="flex items-center gap-3">
         <div className="font-bold text-lg">
           <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`}>
             <img src="/logo.png" className="h-14" alt="Logo" />
-            <span className="self-center text-2xl font-semibold font-serif whitespace-nowrap dark:text-white">DAS</span>
           </NavLink>
         </div>
         <div className="items-center justify-between w-full md:flex md:w-auto md:order-1" id="navbar-user">
