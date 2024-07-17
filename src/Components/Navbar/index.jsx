@@ -104,7 +104,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex justify-between items-center fixed gap-2 z-10 w-full py-4 px-8 text-sm font-light top-0 bg-white border-b border-gray-200 dark:bg-gray-900">
+    <nav className="bg-white bg-opacity-80 shadow-md fixed w-full z-50 py-2 px-4 flex justify-between items-center">
       
       {/* Left */}
       <div className="flex items-center gap-3">

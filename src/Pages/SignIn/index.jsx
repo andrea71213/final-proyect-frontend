@@ -1,6 +1,7 @@
 import { useContext, useState, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ShoppingCartContext } from "../../Context";
+import './signin.css';
 
 function SignIn() {
   const { account, setSignOut, setAccount } = useContext(ShoppingCartContext);
@@ -103,10 +104,12 @@ function SignIn() {
   const renderView = () => view === 'create-user-info' ? renderCreateUserInfo() : renderLogIn();
 
   return (
-    <>
-      <h1 className='font-medium text-xl text-center mb-6 w-80'>Bienvenido</h1>
-      {renderView()}
-    </>
+    <div className="sign-in-container">
+      <div className="sign-in-box">
+        <h1 className='font-medium text-xl text-center mb-6 w-80'>Bienvenido</h1>
+        {renderView()}
+      </div>
+    </div>
   );
 }
 

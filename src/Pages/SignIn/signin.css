@@ -1,0 +1,30 @@
+/* SignIn.css */
+.sign-in-container {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el contenido */
+    align-items: center; /* Centra verticalmente el contenido */
+    height: 100vh; /* Hace que el contenedor ocupe toda la altura de la ventana */
+    width: 100vw;
+    background-image: url("/fondo-signin.jpeg"); /* Cambia esto a la ruta de tu imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    margin: 0; /* Elimina márgenes en el contenedor */
+}
+
+.sign-in-box {
+    max-width: 400px; /* Ajusta el ancho máximo del contenedor del formulario */
+    width: 100%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Aumenta la sombra para mayor contraste */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido del formulario horizontalmente */
+}
+
+.sign-in-box h1 {
+    margin: 0 0 20px 0; /* Elimina márgenes laterales y ajusta el margen inferior */
+    font-size: 1.5rem; /* Ajusta el tamaño del texto del encabezado */
+    text-align: center; /* Centra el texto del encabezado */
+}
