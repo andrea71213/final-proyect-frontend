@@ -1,6 +1,6 @@
 const Layout = ({children}) => {
   return (
-    <div>
+    <div className='items-center'>
       {children}
     </div>
   );
