@@ -1,5 +1,6 @@
 import { useContext, useState, useRef } from 'react'
 import { ShoppingCartContext } from '../../Context'
+import './micuenta.css';
 
 function MiCuenta() {
   const { setAccount } = useContext(ShoppingCartContext)
@@ -24,13 +25,13 @@ function MiCuenta() {
 
   const renderUserInfo = () => {
     return (
-      <div className='flex flex-col w-80'>
+      <div className='flex flex-col gap-2 w-80'>
         <p>
-          <span className='font-light text-sm'>Nombre: </span>
+          <span className='font-light text-base'>Nombre: </span>
           <span>{parsedAccount?.name}</span>
         </p>
         <p>
-          <span className='font-light text-sm'>Correo: </span>
+          <span className='font-light text-base'>Correo: </span>
           <span>{parsedAccount?.email}</span>
         </p>
         <button
@@ -91,8 +92,12 @@ function MiCuenta() {
 
   return (
     <>
-      <h1 className="font-medium text-xl text-center mb-6 w-80">Mi Cuenta</h1>
-      {renderView()}
+      <div className="mi-cuenta-container">
+      <div className="mi-cuenta-box m-10">
+      <h1 className="font-medium text-xl text-center mb-6 w-80 ">Mi Cuenta</h1>
+        {renderView()}
+      </div>
+    </div>
     </>
   )
 }

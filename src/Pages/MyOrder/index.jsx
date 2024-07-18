@@ -10,9 +10,9 @@ function MyOrder() {
   if (indexOrder === 'last') indexOrder = order?.length -1
 
   return (
-    <div className="text-center">
+    <div className="text-center mt-24 gap-3 pb-2">
       Estas comprando ... 🛒🛒🛒
-      <div className='flex flex-col gap-3'>
+      <div className='flex-col gap-3 pb-2'>
         {
           order[indexOrder]?.products.map(product => (
             <LastOrder 

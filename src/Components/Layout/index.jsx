@@ -1,6 +1,6 @@
 const Layout = ({children}) => {
   return (
-    <div className='items-center'>
+    <div className='flex flex-col items-center justify-center'>
       {children}
     </div>
   );
