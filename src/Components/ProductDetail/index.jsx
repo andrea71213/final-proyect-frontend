@@ -22,7 +22,7 @@ const ProductDetail = () => {
         />
       </figure>
       <p className='flex flex-col p-6'>
-        <span className='font-medium text-2xl mb-2'>${productToShow.price}</span>
+        <span className='font-medium text-2xl mb-2'>S/.{productToShow.price}</span>
         <span className='font-medium text-md'>{productToShow.title}</span>
         <span className='font-light text-sm'>{productToShow.description}</span>
       </p>

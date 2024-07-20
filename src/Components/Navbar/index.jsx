@@ -123,10 +123,11 @@ const Navbar = () => {
       
       {/* Left */}
       <div className="flex items-center gap-3">
-        <div className="font-bold text-lg">
+        <div className="flex justify-between gap-2 font-bold text-lg">
           <NavLink to={`${isUserSignOut ? '/sign-in' : '/'}`}>
-            <img src="/logo-das.png" className="h-14" alt="Logo" />
+            <img src="/logo1.png" className="h-14" alt="Logo" />
           </NavLink>
+          <h1 className="self-center text-3xl font-bold whitespace-nowrap dark:text-white">DAS</h1>
         </div>
       </div>
 
@@ -155,7 +156,7 @@ const Navbar = () => {
             <li className="p-1 text-base">
               <NavLink
                 to='/clothes'
-                onClick={() => { setSearchByCategory('clothes'); closeMenus(); }}
+                onClick={() => { setSearchByCategory('ropa'); closeMenus(); }}
                 className={({ isActive }) => isActive ? activeStyle : undefined }>
                 Ropa
               </NavLink>
@@ -163,7 +164,7 @@ const Navbar = () => {
             <li className="p-1 text-base">
               <NavLink
                 to='/electronics'
-                onClick={() => { setSearchByCategory('electronics'); closeMenus(); }}
+                onClick={() => { setSearchByCategory('Tecnología'); closeMenus(); }}
                 className={({ isActive }) => isActive ? activeStyle : undefined }
               >
                 Tecnología
@@ -180,8 +181,8 @@ const Navbar = () => {
             </li>
             <li className="p-1 text-base">
               <NavLink
-                to='/shoes'
-                onClick={() => { setSearchByCategory('shoes'); closeMenus(); }}
+                to='/accesories'
+                onClick={() => { setSearchByCategory('accesories'); closeMenus(); }}
                 className={({ isActive }) => isActive ? activeStyle : undefined }
               >
                 Accesorios

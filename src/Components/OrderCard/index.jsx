@@ -19,7 +19,7 @@ const OrderCard = (data) => {
 
       <div className='flex items-center gap-2'>
         <p className='text-md font-medium'>
-          ${price}
+          S/.{price}
         </p>
         <XMarkIcon onClick={() => handleDelete(id)} className='h-6 w-6 text-black cursor-pointer' />
       </div>
