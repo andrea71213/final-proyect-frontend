@@ -210,7 +210,16 @@ export const ShoppingCartProvider = ({ children }) => {
         price: 10, 
         images: ["https://i.pinimg.com/564x/06/b9/d3/06b9d3a0bf69d2a9746a7e2b2b0df867.jpg"]
       },
-      
+      379: { 
+        title: 'Sueter de Lana Organica', 
+        price: 30, 
+        images: ["https://i.pinimg.com/564x/eb/7c/e9/eb7ce96cfcb93d3ab2a8fb87b138bdfd.jpg"]
+      },
+      380: { 
+        title: 'Sueter Off Shoulder Lana', 
+        price: 30, 
+        images: ["https://i.pinimg.com/736x/49/45/5e/49455ebe800668b2b0955322be3f719f.jpg"]
+      },
     };
   
     return data.map(product => {
