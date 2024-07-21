@@ -216,7 +216,7 @@ export const ShoppingCartProvider = ({ children }) => {
         images: ["https://i.pinimg.com/564x/eb/7c/e9/eb7ce96cfcb93d3ab2a8fb87b138bdfd.jpg"]
       },
       380: { 
-        title: 'Sueter Off Shoulder Lana', 
+        title: 'Sueter Off Shoulder de Lana', 
         price: 30, 
         images: ["https://i.pinimg.com/736x/49/45/5e/49455ebe800668b2b0955322be3f719f.jpg"]
       },
