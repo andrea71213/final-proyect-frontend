@@ -182,148 +182,69 @@ export const ShoppingCartProvider = ({ children }) => {
       373: { 
         title: 'Polera Organica', 
         price: 40, 
-        images: ["https://i.pinimg.com/564x/94/b5/b6/94b5b6c23b0fbfe27bd6b25f9c46aedd.jpg"],
+        images: ["https://i.pinimg.com/564x/26/38/ed/2638ed6a8f1efed6d6d52871c8342557.jpg"],
         category: 4
       },
-      374: { 
-        title: 'Audifonos Sotenibles', 
-        price: 40, 
-        images: ["https://i.pinimg.com/564x/ad/69/50/ad695050f9b88be0e439d8a8df69a98a.jpg"],
-      },
-      375: { 
-        title: 'Pañuelo/Bandana Multiusos de Seda', 
-        price: 10, 
-        images: ["https://i.pinimg.com/564x/61/98/5d/61985d3ef231aa9dcb181ced9bdc7721.jpg"]
-      },
-      376: { 
-        title: 'Gorro de Materiales Reciclados', 
-        price: 15, 
-        images: ["https://i.pinimg.com/564x/e6/10/a9/e610a95cff6afcb9f3552ac02b1b5960.jpg"]
-      },
-      377: { 
-        title: 'Guantes de Lana', 
-        price: 10, 
-        images: ["https://i.pinimg.com/474x/f5/84/7b/f5847bc94fb0514626fc33028b214ac6.jpg"]
-      },
-      378: { 
-        title: 'Gorro Tejido de Lana', 
-        price: 10, 
-        images: ["https://i.pinimg.com/564x/06/b9/d3/06b9d3a0bf69d2a9746a7e2b2b0df867.jpg"]
-      },
-      379: { 
-        title: 'Sueter de Lana Organica', 
-        price: 30, 
-        images: ["https://i.pinimg.com/564x/eb/7c/e9/eb7ce96cfcb93d3ab2a8fb87b138bdfd.jpg"]
-      },
-      380: { 
-        title: 'Sueter Off Shoulder Lana', 
-        price: 30, 
-        images: ["https://i.pinimg.com/736x/49/45/5e/49455ebe800668b2b0955322be3f719f.jpg"]
-      },
     };
-  
+
     return data.map(product => {
-      let modifiedCategory = product.category;
-  
-      // Modificacion de los nombres de categorías basadas por id
-      if (product.category.id === 1) {
-        modifiedCategory = { ...product.category, name: 'Ropa' };
-      } else if (product.category.id === 2) {
-        modifiedCategory = { ...product.category, name: 'Tecnología' };
-      } else if (product.category.id === 3) {
-        modifiedCategory = { ...product.category, name: 'Hogar/Oficina' };
-      } else if (product.category.id === 4) {
-        modifiedCategory = { ...product.category, name: 'Accesorios' };
-      }
-  
-      // Verificar si el producto necesita ser modificado
       if (productModifications[product.id]) {
-        const modifications = productModifications[product.id];
-        return {
-          ...product,
-          ...modifications,  // Aplicar modificaciones específicas
-          category: modifiedCategory  // Asignar categoría modificada
-        };
-      } else {
-        // Productos que no cumplen la condición permanecen sin cambios
-        return {
-          ...product,
-          category: modifiedCategory,  // Asignar categoría modificada
-        };
+        return { ...product, ...productModifications[product.id] };
       }
+      return product;
     });
   };
-  
 
   useEffect(() => {
-    fetch('https://api.escuelajs.co/api/v1/products')
+    fetch(`${process.env.REACT_APP_API_URL}`)
       .then(response => response.json())
-      .then(data => setItems(modifyProductData(data)))
+      .then(data => {
+        const modifiedData = modifyProductData(data);
+        setItems(modifiedData);
+      });
   }, []);
 
-  const filteredItemsByTitle = (items, searchByTitle) => {
-    return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()));
-  };
-
   useEffect(() => {
-    if (searchByTitle && !searchByCategory) setFilteredItems(filterBy('BY_TITLE', items, searchByTitle, searchByCategory));
-    if (!searchByTitle && searchByCategory) setFilteredItems(filterBy('BY_CATEGORY', items, searchByTitle, searchByCategory));
-    if (!searchByTitle && !searchByCategory) setFilteredItems(filterBy(null, items, searchByTitle, searchByCategory));
-    if (searchByTitle && searchByCategory) setFilteredItems(filterBy('BY_TITLE_AND_CATEGORY', items, searchByTitle, searchByCategory));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (searchByTitle && searchByCategory) {
+      setFilteredItems(items.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()) && item.category.id === searchByCategory.id));
+    } else if (searchByTitle) {
+      setFilteredItems(items.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase())));
+    } else if (searchByCategory) {
+      setFilteredItems(items.filter(item => item.category.id === searchByCategory.id));
+    } else {
+      setFilteredItems(items);
+    }
   }, [items, searchByTitle, searchByCategory]);
-
-  const filteredItemsByCategory = (items, searchByCategory) => {
-    return items?.filter(item => item.category.name.toLowerCase().includes(searchByCategory.toLowerCase()));
-  };
-
-  const filterBy = (searchType, items, searchByTitle, searchByCategory) => {
-    if (searchType === 'BY_TITLE') {
-      return filteredItemsByTitle(items, searchByTitle);
-    }
-
-    if (searchType === 'BY_CATEGORY') {
-      return filteredItemsByCategory(items, searchByCategory);
-    }
-
-    if (!searchType) {
-      return items;
-    }
-
-    if (searchType === 'BY_TITLE_AND_CATEGORY') {
-      return filteredItemsByCategory(items, searchByCategory).filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()));
-    }
-  };
 
   return (
     <ShoppingCartContext.Provider value={{
       count,
       setCount,
+      cartProducts,
+      setCartProducts,
       isProductDetailOpen,
       openProductDetail,
       closeProductDetail,
       productToShow,
       setProductToShow,
-      cartProducts,
-      setCartProducts,
       isCheckoutSideMenuOpen,
       openCheckoutSideMenu,
       closeCheckoutSideMenu,
-      handleDelete,
-      order,
-      setOrder,
-      setSearchByTitle,
-      searchByTitle,
       items,
       setItems,
+      searchByTitle,
+      setSearchByTitle,
       filteredItems,
       setFilteredItems,
       searchByCategory,
       setSearchByCategory,
+      order,
+      setOrder,
+      handleDelete,
       account,
       setAccount,
       signOut,
-      setSignOut
+      setSignOut,
     }}>
       {children}
     </ShoppingCartContext.Provider>
